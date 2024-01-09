@@ -22,7 +22,7 @@ func Clean() {
 func getReadLine() {
 	once.Do(func() {
 		cli, err := readline.NewEx(&readline.Config{
-			Prompt:                 "\033[31mhost»\033[0m ",
+			Prompt:                 "\033[31mgptchat»\033[0m ",
 			DisableAutoSaveHistory: true,
 			InterruptPrompt:        "^C",
 			EOFPrompt:              "exit",

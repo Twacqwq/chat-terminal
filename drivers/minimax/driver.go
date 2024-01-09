@@ -33,7 +33,7 @@ func (m *MiniMax) Init(ctx context.Context) error {
 }
 
 func (m *MiniMax) Prompt(ctx context.Context) {
-	command.Rl.SetPrompt("\033[31mhost->minimax»\033[0m ")
+	command.Rl.SetPrompt("\033[31mgptchat->minimax»\033[0m ")
 }
 
 func (m *MiniMax) Chat(ctx context.Context, message string) error {

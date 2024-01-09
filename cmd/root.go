@@ -39,6 +39,7 @@ func run(cmd *cobra.Command, args []string) {
 		return
 	}
 	fmt.Fprintln(os.Stderr, color.CyanString("⚡️ A terminal chat GPT that integrates major models"))
+	fmt.Fprintln(os.Stderr, color.GreenString("Config is in `%s`", driver.Viper().ConfigFileUsed()))
 
 	chExit := make(chan struct{}, 1)
 
@@ -90,6 +91,6 @@ func listen(ctx context.Context, chExit chan struct{}, line string) {
 		chExit <- struct{}{}
 		return
 	default:
-		color.RedString("💥 Command not found.")
+		fmt.Fprintln(os.Stderr, color.RedString("💥 Command not found."))
 	}
 }

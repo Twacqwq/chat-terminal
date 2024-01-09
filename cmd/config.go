@@ -19,12 +19,7 @@ func runInitConfig(cmd *cobra.Command, args []string) {
 	v := driver.Viper()
 	v.Set("models", driver.NewConfig())
 
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		panic(err)
-	}
-
-	if err := v.WriteConfigAs(homeDir + "/.gptchat"); err != nil {
+	if err := v.WriteConfig(); err != nil {
 		panic(err)
 	}
 
