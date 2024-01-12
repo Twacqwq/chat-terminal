@@ -37,7 +37,7 @@ func Viper() *viper.Viper {
 		}
 
 		v = viper.New()
-		v.SetConfigFile(fmt.Sprintf("%s/.gptchat", homeDir))
+		v.SetConfigFile(fmt.Sprintf("%s/.gptchat/config", homeDir))
 		v.SetConfigType("json")
 		v.AddConfigPath("$HOME")
 	})
