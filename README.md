@@ -9,4 +9,11 @@ A terminal chat GPT that integrates major models
 - [ ] Gemini 
 - [x] MiniMax
 - [ ] more...
+  
+## TODO List
+- Switch Models
+- Code snippet generation
+- Pipeline
+- Assistant
+- ...
 
