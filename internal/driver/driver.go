@@ -2,6 +2,8 @@ package driver
 
 import (
 	"context"
+
+	"github.com/Twacqwq/gpt-terminal/internal/storage"
 )
 
 type Driver interface {
@@ -18,5 +20,10 @@ type Meta interface {
 type GPTTerminal interface {
 	Driver
 
-	Chat(ctx context.Context, messages string) error
+	// Chat is a conversation with the model
+	Chat(ctx context.Context, messages string, historyData []*storage.HistoryData) (string, error)
+	// SaveHistory Save the content of each conversation
+	SaveHistory(ctx context.Context, history storage.HistoryObj) error
+	// GetHistory Get the latest records
+	GetHistory(ctx context.Context) ([]*storage.HistoryData, error)
 }

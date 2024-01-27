@@ -8,6 +8,7 @@ import (
 	"github.com/Twacqwq/gpt-terminal/bootstrap"
 	"github.com/Twacqwq/gpt-terminal/internal/command"
 	"github.com/Twacqwq/gpt-terminal/internal/driver"
+	"github.com/Twacqwq/gpt-terminal/internal/storage"
 	"github.com/Twacqwq/gpt-terminal/internal/typs"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -76,14 +77,26 @@ func listen(ctx context.Context, chExit chan struct{}, line string) {
 				break
 			}
 			if line == typs.Back {
-				command.Rl.SetPrompt("\033[31mhost»\033[0m ")
+				command.Rl.SetPrompt("\033[31mgptchat»\033[0m ")
 				return
 			}
-			err := terminal.Chat(ctx, line)
+
+			// Read History
+			historyData, err := terminal.GetHistory(ctx)
+			if err != nil {
+				break
+			}
+
+			completionText, err := terminal.Chat(ctx, line, historyData)
 			if err != nil {
 				break
 			}
 			println()
+
+			// Save History
+			if err := terminal.SaveHistory(ctx, storage.NewHistoryReader(line, completionText)); err != nil {
+				break
+			}
 		}
 	case typs.Exit:
 		fmt.Fprintln(command.Rl.Stderr(), color.GreenString("Bye~ 🙈"))

@@ -1,2 +1,5 @@
+.vscode
 key
 .gptchat
+*.sqlite
+*.db
